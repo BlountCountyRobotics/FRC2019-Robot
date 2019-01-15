@@ -3,6 +3,7 @@ from wpilib.command.subsystem import Subsystem
 import ctre
 import robot_map
 import math
+import commands
 
 
 class Arm(Subsystem):
@@ -64,7 +65,7 @@ class Drivetrain(Subsystem):
         return speed
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(None) #needs default command
+        self.setDefaultCommand(commands.drivetrain.FollowJoystick) #needs default command
 
 
 
