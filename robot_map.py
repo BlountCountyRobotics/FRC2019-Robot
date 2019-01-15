@@ -13,5 +13,11 @@ can_ids = {
     #right side drivetrain motors
     "right1": 3,
     "right2": 4,
-    "right3": 5
+    "right3": 5,
+
+    #arm motors
+    "grabber": 6,
+    "arm": 7,
+
+    "ramp": 8
 }

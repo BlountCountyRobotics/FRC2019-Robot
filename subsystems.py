@@ -9,6 +9,7 @@ class Arm(Subsystem):
 
     def __init__(self):
         super().__init__("Arm")
+        super.arm_motor = ctre.TalonSRX(robot_map.can_ids["arm"])
 
 
 
@@ -45,6 +46,7 @@ class Grabber(Subsystem):
 
     def __init__(self):
         super().__init__("Grabber")
+        self.grabber_motor = ctre.TalonSRX(robot_map.can_ids["grabber"])
 
 
 
@@ -59,7 +61,7 @@ class Ramp(Subsystem):
 
     def __init__(self):
         super().__init__("Ramp")
-
+        self.ramp_motor = ctre.TalonSRX(robot_map.can_ids["ramp"])
 
 
     def initDefaultCommand(self):
