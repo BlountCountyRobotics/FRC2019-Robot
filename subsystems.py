@@ -2,7 +2,7 @@ import wpilib
 from wpilib.command.subsystem import Subsystem
 import ctre
 import robot_map
-
+import math
 
 
 class Arm(Subsystem):
@@ -34,7 +34,34 @@ class Drivetrain(Subsystem):
         self.right3 = ctre.TalonSRX(robot_map.can_ids["right3"])
 
 
+    def followJoystick(self, joystick):
+        left_output  = math.pow(joystick.getY(XboxController.Hand.kLeft ), 3)
+        right_output = math.pow(joystick.getY(XboxController.Hand.kRight), 3)
 
+        factor = .4
+
+        if   joystick.getBumper(XboxController.Hand.kLeft):
+            factor += .3
+        elif joystick.getBumper(XboxController.Hand.kRight):
+            factor += .3
+
+        setSpeed(left_output * factor, right_output * factor)
+
+    def setSpeed(left, right):
+        self.left1.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
+        self.left2.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
+        self.left3.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
+
+        self.right1.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
+        self.right2.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
+        self.right3.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
+
+    def limit(speed):
+        if(speed > 1.0):
+            return 1.0
+        elif(speed < -1.0):
+            return -1.0
+        return speed
 
     def initDefaultCommand(self):
         self.setDefaultCommand(None) #needs default command
