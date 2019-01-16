@@ -19,5 +19,12 @@ can_ids = {
     "grabber": 6,
     "arm": 7,
 
-    "ramp": 8
+    "ramp": 8,
+    "pcm": 9
+}
+
+
+solenoids = {
+    "left_gearbox": 0,
+    "right_gearbox": 1
 }

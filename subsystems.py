@@ -34,7 +34,12 @@ class Drivetrain(Subsystem):
         self.right2 = ctre.TalonSRX(robot_map.can_ids["right2"])
         self.right3 = ctre.TalonSRX(robot_map.can_ids["right3"])
 
+        self.left_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
+                                             robot_map.solenoids["left_gearbox"])
+        self.right_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
+                                              robot_map.solenoids["right_gearbox"])
 
+    #use xbox controller to feed motor output
     def followJoystick(self, joystick):
         left_output  = math.pow(joystick.getY(XboxController.Hand.kLeft ), 3)
         right_output = math.pow(joystick.getY(XboxController.Hand.kRight), 3)
@@ -57,12 +62,37 @@ class Drivetrain(Subsystem):
         self.right2.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
         self.right3.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
 
+    #limit percent output from -1.0 to 1.0
     def limit(speed):
         if(speed > 1.0):
             return 1.0
         elif(speed < -1.0):
             return -1.0
         return speed
+
+    def toggleGearing():
+        setGearing(not getGearing())
+
+    def setHighGearing():
+        if getGearing() == False:
+            setGearing(True)
+
+    def setLowGearing():
+        if getGearing() == True:
+            setGearing(False)
+
+    def getGearing():
+        #if they are both the same, then return just one of them
+        if self.left_solenoid.get() and self.right_solenoid.get():
+            return self.left_solenoid.get()
+        else:
+            #otherwise, return current gearing as high (to be safe)
+            return True
+
+    #set both gearbox gearings at the same time
+    def setGearing(input):
+        self.left_solenoid.set(input)
+        self.right_solenoid.set(input)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(FollowJoystick()) #needs default command
