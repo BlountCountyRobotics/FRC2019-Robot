@@ -3,14 +3,14 @@ from wpilib.command.subsystem import Subsystem
 import ctre
 import robot_map
 import math
-import commands
+from commands.drivetrain import FollowJoystick
 
 
 class Arm(Subsystem):
 
     def __init__(self):
         super().__init__("Arm")
-        super.arm_motor = ctre.TalonSRX(robot_map.can_ids["arm"])
+        self.arm_motor = ctre.TalonSRX(robot_map.can_ids["arm"])
 
 
 
@@ -65,7 +65,7 @@ class Drivetrain(Subsystem):
         return speed
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(commands.drivetrain.FollowJoystick) #needs default command
+        self.setDefaultCommand(FollowJoystick()) #needs default command
 
 
 

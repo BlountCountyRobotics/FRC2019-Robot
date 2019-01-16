@@ -6,7 +6,7 @@ class FollowJoystick(Command):
 
     def __init__(self):
         super().__init__("FollowJoystick")
-        self.requires(subsystems.Drivetrain)
+        self.requires(subsystems.drivetrain)
 
     def initialize(self):
         pass
