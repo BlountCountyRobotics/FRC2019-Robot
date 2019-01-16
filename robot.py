@@ -3,12 +3,14 @@ import commandbased
 
 import ctre
 import subsystems
+import oi
 
 
 class Melody(commandbased.CommandBasedRobot):
 
     def robotInit(self):
         subsystems.InitSubsystems()
+        oi.InitOI()
 
     def autonomousInit(self):
         pass
