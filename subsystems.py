@@ -103,7 +103,7 @@ grabber = None
 drivetrain = None
 ramp = None
 
-def InitSubsystems(): #creates the subsystem global variables
+def initSubsystems(): #creates the subsystem global variables
     global arm, grabber, drivetrain, ramp
     arm = Arm()
     grabber = Grabber()

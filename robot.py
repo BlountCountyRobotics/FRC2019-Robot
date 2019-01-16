@@ -9,8 +9,8 @@ import oi
 class Melody(commandbased.CommandBasedRobot):
 
     def robotInit(self):
-        subsystems.InitSubsystems()
-        oi.InitOI()
+        subsystems.initSubsystems()
+        oi.initOI()
 
     def autonomousInit(self):
         pass

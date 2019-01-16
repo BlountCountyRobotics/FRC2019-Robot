@@ -6,7 +6,7 @@ from wpilib.buttons import JoystickButton
 button_board = None
 controller = None
 
-def InitOI():
+def initOI():
     global button_board, controller
 
     controller = XboxController(0)
