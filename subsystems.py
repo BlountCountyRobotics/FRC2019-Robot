@@ -41,11 +41,15 @@ class Drivetrain(Subsystem):
 
     #use xbox controller to feed motor output
     def followJoystick(self, joystick):
+        #cube joystick input for better curve
         left_output  = math.pow(joystick.getY(XboxController.Hand.kLeft ), 3)
         right_output = math.pow(joystick.getY(XboxController.Hand.kRight), 3)
 
+
+        #create factor for easier driving at slow speeds
         factor = .4
 
+        #if bumpers are pressed, increase factor
         if   joystick.getBumper(XboxController.Hand.kLeft):
             factor += .3
         elif joystick.getBumper(XboxController.Hand.kRight):
