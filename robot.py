@@ -4,6 +4,7 @@ import commandbased
 import ctre
 import subsystems
 import oi
+import navx
 
 
 class Melody(commandbased.CommandBasedRobot):
@@ -11,6 +12,7 @@ class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         subsystems.initSubsystems()
         oi.initOI()
+        self.navx = navx.ahrs.AHRS.create_spi()
 
     def autonomousInit(self):
         pass
