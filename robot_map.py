@@ -24,7 +24,8 @@ can_ids = {
 }
 
 
-solenoids = {
+pcm = {
     "left_gearbox": 0,
-    "right_gearbox": 1
+    "right_gearbox": 1,
+    "compressor": 2
 }

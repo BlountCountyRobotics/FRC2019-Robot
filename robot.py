@@ -1,10 +1,11 @@
 import wpilib
 import commandbased
-
 import ctre
 import subsystems
 import oi
 import navx
+import networktables
+import robot_map
 
 
 class Melody(commandbased.CommandBasedRobot):
@@ -13,6 +14,8 @@ class Melody(commandbased.CommandBasedRobot):
         subsystems.initSubsystems()
         oi.initOI()
         self.navx = navx.ahrs.AHRS.create_spi()
+        self.compressor = wpilib.Compressor(robot_map.pcm["compressor"])
+
 
     def autonomousInit(self):
         pass
