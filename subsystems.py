@@ -39,23 +39,28 @@ class Drivetrain(Subsystem):
         self.right_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
                                               robot_map.solenoids["right_gearbox"])
 
+        self.useFactor = True
+
     #use xbox controller to feed motor output
     def followJoystick(self, joystick):
         #cube joystick input for better curve
         left_output  = math.pow(joystick.getY(XboxController.Hand.kLeft ), 3)
         right_output = math.pow(joystick.getY(XboxController.Hand.kRight), 3)
 
+        if useFactor:
+            #create factor for easier driving at slow speeds
+            factor = .4
 
-        #create factor for easier driving at slow speeds
-        factor = .4
+            #if bumpers are pressed, increase factor
+            if   joystick.getBumper(XboxController.Hand.kLeft):
+                factor += .3
+            elif joystick.getBumper(XboxController.Hand.kRight):
+                factor += .3
 
-        #if bumpers are pressed, increase factor
-        if   joystick.getBumper(XboxController.Hand.kLeft):
-            factor += .3
-        elif joystick.getBumper(XboxController.Hand.kRight):
-            factor += .3
+            setSpeed(left_output * factor, right_output * factor)
+        else:
+            setSpeed(left_output, right_output)
 
-        setSpeed(left_output * factor, right_output * factor)
 
     def setSpeed(left, right):
         self.left1.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
