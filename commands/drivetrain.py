@@ -13,3 +13,7 @@ class FollowJoystick(Command):
 
     def execute(self):
         subsystems.drivetrain.followJoystick(oi.controller)
+        if oi.controller.getPOV() == 0:
+            subsystems.drivetrain.setHighGearing()
+        if oi.controller.getPOV() == 180:
+            subsystems.drivetrain.setLowGearing()
