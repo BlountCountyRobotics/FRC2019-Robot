@@ -22,3 +22,15 @@ class FollowJoystick(Command):
             subsystems.drivetrain.setHighGearing()
         if oi.controller.getPOV() == 180: #if d-pad is pressed downward, set gearing to low
             subsystems.drivetrain.setLowGearing()
+
+class StopDriving(Command):
+
+    def __init__(self):
+        super().__init__("StopDriving")
+        self.requires(subsystems.drivetrain)
+
+    def initialize(self):
+        pass
+
+    def execute(self):
+        subsystems.drivetrain.setSpeed(0.0, 0.0)
