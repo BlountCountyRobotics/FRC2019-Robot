@@ -2,6 +2,7 @@ from wpilib.joystick import Joystick
 from wpilib import XboxController
 from wpilib.buttons import JoystickButton
 from commands.drivetrain import StopDriving
+from commands.other import ToggleCompressor
 
 
 button_board = None
@@ -16,3 +17,4 @@ def initOI():
     button_board = Joystick(1)
 
     JoystickButton(controller, XboxController.Button.kStart).toggleWhenPressed(StopDriving())
+    JoystickButton(controller, XboxController.Button.kBack).whenPressed(ToggleCompressor())
