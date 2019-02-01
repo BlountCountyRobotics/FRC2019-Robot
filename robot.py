@@ -14,7 +14,7 @@ class Melody(commandbased.CommandBasedRobot):
         subsystems.Subsystems.initSubsystems()
         oi.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
-        self.compressor = wpilib.Compressor(robot_map.pcm["compressor"])
+        self.compressor = wpilib.Compressor()
 
 
     def autonomousInit(self):

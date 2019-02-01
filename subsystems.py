@@ -104,7 +104,7 @@ class Drivetrain(Subsystem):
         self.right_solenoid.set(input)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(drivetrain.FollowJoystick()) #needs default command
+        self.setDefaultCommand(commands.drivetrain.FollowJoystick()) #needs default command
 
 
 
