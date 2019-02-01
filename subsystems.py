@@ -44,8 +44,8 @@ class Drivetrain(Subsystem):
     #use xbox controller to feed motor output
     def followJoystick(self, joystick):
         #cube joystick input for better curve
-        left_output  = math.pow(joystick.getY(XboxController.Hand.kLeft ), 3)
-        right_output = math.pow(joystick.getY(XboxController.Hand.kRight), 3)
+        left_output  = math.pow(joystick.getRawAxis(robot_map.ds4["l-y_axis"]), 3)
+        right_output = math.pow(joystick.getRawAxis(robot_map.ds4["r-y_axis"]), 3)
 
         if useFactor:
             #create factor for easier driving at slow speeds

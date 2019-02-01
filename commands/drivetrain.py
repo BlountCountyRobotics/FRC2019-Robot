@@ -6,31 +6,27 @@ class FollowJoystick(Command):
 
     def __init__(self):
         super().__init__("FollowJoystick")
-        self.requires(subsystems.drivetrain)
+        self.requires(subsystems.Subsystems.drivetrain)
 
     def initialize(self):
         pass
 
     def execute(self):
-        subsystems.drivetrain.followJoystick(oi.controller)
+        subsystems.Subsystems.drivetrain.followJoystick(oi.controller)
 
-        #if back button is pressed, invert use factor
-        if oi.controller.getBackButtonPressed():
-            subsystems.drivetrain.useFactor = not subsystems.drivetrain.useFactor
-
-        if oi.controller.getPOV() == 0: #if d-pad is pressed upward, set gearing to high
-            subsystems.drivetrain.setHighGearing()
-        if oi.controller.getPOV() == 180: #if d-pad is pressed downward, set gearing to low
-            subsystems.drivetrain.setLowGearing()
+        #if touchpad button is pressed, invert gearing
+        if oi.controller.getRawButtonPressed("touchpad_button"):
+            subsystems.Subsystems.drivetrain.setGearing(
+                not subsystems.Subsystems.drivetrain.getGearing())
 
 class StopDriving(Command):
 
     def __init__(self):
         super().__init__("StopDriving")
-        self.requires(subsystems.drivetrain)
+        self.requires(subsystems.Subsystems.drivetrain)
 
     def initialize(self):
         pass
 
     def execute(self):
-        subsystems.drivetrain.setSpeed(0.0, 0.0)
+        subsystems.Subsystems.drivetrain.setSpeed(0.0, 0.0)
