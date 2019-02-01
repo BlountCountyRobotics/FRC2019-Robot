@@ -3,7 +3,7 @@ from wpilib.command.subsystem import Subsystem
 import ctre
 import robot_map
 import math
-from commands.drivetrain import FollowJoystick
+import commands.drivetrain
 
 
 class Arm(Subsystem):
@@ -35,9 +35,9 @@ class Drivetrain(Subsystem):
         self.right3 = ctre.TalonSRX(robot_map.can_ids["right3"])
 
         self.left_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
-                                             robot_map.solenoids["left_gearbox"])
+                                             robot_map.pcm["left_gearbox"])
         self.right_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
-                                              robot_map.solenoids["right_gearbox"])
+                                              robot_map.pcm["right_gearbox"])
 
         self.useFactor = True
 
@@ -104,7 +104,7 @@ class Drivetrain(Subsystem):
         self.right_solenoid.set(input)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(FollowJoystick()) #needs default command
+        self.setDefaultCommand(drivetrain.FollowJoystick()) #needs default command
 
 
 
@@ -135,16 +135,17 @@ class Ramp(Subsystem):
         self.setDefaultCommand(None) #needs default command
 
 
+class Subsystems():
+    #global variables used to access the main instance of each subsystem
+    arm = None
+    grabber = None
+    drivetrain = None
+    ramp = None
 
-#global variables used to access the main instance of each subsystem
-arm = None
-grabber = None
-drivetrain = None
-ramp = None
-
-def initSubsystems(): #creates the subsystem global variables
-    global arm, grabber, drivetrain, ramp
-    arm = Arm()
-    grabber = Grabber()
-    drivetrain = Drivetrain()
-    ramp = Ramp()
+    @staticmethod
+    def initSubsystems(): #creates the subsystem global variables
+        global arm, grabber, drivetrain, ramp
+        Subsystems.arm = Arm()
+        Subsystem.grabber = Grabber()
+        Subsystems.drivetrain = Drivetrain()
+        Subsystems.ramp = Ramp()

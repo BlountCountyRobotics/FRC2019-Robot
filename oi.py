@@ -1,8 +1,8 @@
 from wpilib.joystick import Joystick
 from wpilib import XboxController
 from wpilib.buttons import JoystickButton
-from commands.drivetrain import StopDriving
-from commands.other import ToggleCompressor
+import commands.drivetrain
+import commands.other
 import robot_map
 
 button_board = None
@@ -16,5 +16,5 @@ def initOI():
     controller = Joystick(0)
     button_board = Joystick(1)
 
-    JoystickButton(controller, robot_map.ds4["options"]).toggleWhenPressed(StopDriving())
-    JoystickButton(controller, robot_map.ds4["share"]).whenPressed(ToggleCompressor())
+    JoystickButton(controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
+    JoystickButton(controller, robot_map.ds4["share"]).whenPressed(commands.other.ToggleCompressor())
