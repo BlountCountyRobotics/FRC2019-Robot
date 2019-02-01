@@ -2,19 +2,25 @@ import wpilib
 import commandbased
 import ctre
 import oi
+from wpilib.command import Command
 import subsystems
 import navx
 import networktables
 import robot_map
 
-
 class Melody(commandbased.CommandBasedRobot):
-
     def robotInit(self):
-        subsystems.Subsystems.initSubsystems()
+        Command.getRobot = lambda x=0: self
+
+        self.arm = subsystems.Arm()
+        self.grabber = subsystems.Grabber()
+        self.drivetrain = subsystems.Drivetrain()
+        self.ramp = subsystems.Ramp()
+
         oi.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
         self.compressor = wpilib.Compressor()
+
 
 
     def autonomousInit(self):
@@ -28,6 +34,7 @@ class Melody(commandbased.CommandBasedRobot):
 
     def teleopPeriodic(self):
         pass
+
 
 if __name__ == '__main__':
     wpilib.run(Melody)

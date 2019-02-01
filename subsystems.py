@@ -11,9 +11,6 @@ class Arm(Subsystem):
     def __init__(self):
         super().__init__("Arm")
         self.arm_motor = ctre.TalonSRX(robot_map.can_ids["arm"])
-
-
-
     def initDefaultCommand(self):
         self.setDefaultCommand(None) #needs default command
 
@@ -21,8 +18,6 @@ class Arm(Subsystem):
 
 
 class Drivetrain(Subsystem):
-
-
 
     def __init__(self):
         super().__init__("Drivetrain")
@@ -133,19 +128,3 @@ class Ramp(Subsystem):
 
     def initDefaultCommand(self):
         self.setDefaultCommand(None) #needs default command
-
-
-class Subsystems():
-    #global variables used to access the main instance of each subsystem
-    arm = None
-    grabber = None
-    drivetrain = None
-    ramp = None
-
-    @staticmethod
-    def initSubsystems(): #creates the subsystem global variables
-        global arm, grabber, drivetrain, ramp
-        Subsystems.arm = Arm()
-        Subsystem.grabber = Grabber()
-        Subsystems.drivetrain = Drivetrain()
-        Subsystems.ramp = Ramp()
