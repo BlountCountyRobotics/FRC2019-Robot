@@ -29,11 +29,7 @@ class Drivetrain(Subsystem):
         self.right2 = ctre.TalonSRX(robot_map.can_ids["right2"])
         self.right3 = ctre.TalonSRX(robot_map.can_ids["right3"])
 
-        self.left_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
-                                             robot_map.pcm["left_gearbox"])
-        self.right_solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"],
-                                              robot_map.pcm["right_gearbox"])
-
+        self.solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["gearbox"])
         self.useFactor = True
 
     #use xbox controller to feed motor output
@@ -58,13 +54,13 @@ class Drivetrain(Subsystem):
 
 
     def setSpeed(left, right):
-        self.left1.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
-        self.left2.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
-        self.left3.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(left))
+        self.left1.set(ctre.ControlMode.PercentOutput, limit(left))
+        self.left2.set(ctre.ControlMode.PercentOutput, limit(left))
+        self.left3.set(ctre.ControlMode.PercentOutput, limit(left))
 
-        self.right1.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
-        self.right2.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
-        self.right3.set(ctre.TalonSRX.ControlMode.PercentOutput, limit(right))
+        self.right1.set(ctre.ControlMode.PercentOutput, limit(right))
+        self.right2.set(ctre.ControlMode.PercentOutput, limit(right))
+        self.right3.set(ctre.ControlMode.PercentOutput, limit(right))
 
     #limit percent output from -1.0 to 1.0
     def limit(speed):
@@ -86,17 +82,11 @@ class Drivetrain(Subsystem):
             setGearing(False)
 
     def getGearing():
-        #if they are both the same, then return just one of them
-        if self.left_solenoid.get() and self.right_solenoid.get():
-            return self.left_solenoid.get()
-        else:
-            #otherwise, return current gearing as high (to be safe)
-            return True
 
+        return self.solenoid.get()
     #set both gearbox gearings at the same time
     def setGearing(input):
-        self.left_solenoid.set(input)
-        self.right_solenoid.set(input)
+        self.solenoid.set(input)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(commands.drivetrain.FollowJoystick()) #needs default command

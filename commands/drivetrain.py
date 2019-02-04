@@ -2,6 +2,7 @@ from wpilib.command import Command
 import subsystems
 import oi
 import robot
+import robot_map
 
 class FollowJoystick(Command):
 
@@ -16,9 +17,9 @@ class FollowJoystick(Command):
         self.getRobot().drivetrain.followJoystick(oi.controller)
 
         #if touchpad button is pressed, invert gearing
-        if oi.controller.getRawButtonPressed("touchpad_button"):
-            robot.Melody.subsystems.setGearing(
-                not robot.drivetrain.getGearing())
+        if oi.controller.getRawButtonPressed(robot_map.ds4["touchpad_button"]):
+            self.getRobot().drivetrain.setGearing(not self.getRobot().drivetrain.getGearing())
+
 
 class StopDriving(Command):
 

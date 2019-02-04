@@ -24,9 +24,8 @@ can_ids = {
 }
 
 pcm = {
-    "left_gearbox": 0,
-    "right_gearbox": 1,
-    "compressor": 2
+    "gearbox": 0,
+    "compressor": 3
 }
 
 ds4 = {
