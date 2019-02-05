@@ -30,62 +30,59 @@ class Drivetrain(Subsystem):
         self.right3 = ctre.TalonSRX(robot_map.can_ids["right3"])
 
         self.solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["gearbox"])
-        self.useFactor = True
+
+    def setSpeed(self, left, right):
+        self.left1.set(ctre.ControlMode.PercentOutput, self.limit(left))
+        self.left2.set(ctre.ControlMode.PercentOutput, self.limit(left))
+        self.left3.set(ctre.ControlMode.PercentOutput, self.limit(left))
+
+        self.right1.set(ctre.ControlMode.PercentOutput, self.limit(-right))
+        self.right2.set(ctre.ControlMode.PercentOutput, self.limit(-right))
+        self.right3.set(ctre.ControlMode.PercentOutput, self.limit(-right))
+
+
 
     #use xbox controller to feed motor output
     def followJoystick(self, joystick):
         #cube joystick input for better curve
         left_output  = math.pow(joystick.getRawAxis(robot_map.ds4["l-y_axis"]), 3)
         right_output = math.pow(joystick.getRawAxis(robot_map.ds4["r-y_axis"]), 3)
-        print("left:",left_output,"\tright:",right_output)
-        if useFactor:
-            #create factor for easier driving at slow speeds
-            factor = .4
 
-            #if bumpers are pressed, increase factor
-            if   joystick.getRawButtonPressed(robot_map.ds4["l1"]):
-                factor += .3
-            elif joystick.getRawButtonPressed(robot_map.ds4["r1"]):
-                factor += .3
+        #create factor for easier driving at slow speeds
+        factor = .4
 
-            setSpeed(left_output * factor, right_output * factor)
-        else:
-            setSpeed(left_output, right_output)
+        #if bumpers are pressed, increase factor
+        if   joystick.getRawButton(robot_map.ds4["l1"]):
+            factor += .3
+        if joystick.getRawButton(robot_map.ds4["r1"]):
+            factor += .3
 
-
-    def setSpeed(left, right):
-        self.left1.set(ctre.ControlMode.PercentOutput, limit(left))
-        self.left2.set(ctre.ControlMode.PercentOutput, limit(left))
-        self.left3.set(ctre.ControlMode.PercentOutput, limit(left))
-
-        self.right1.set(ctre.ControlMode.PercentOutput, limit(-right))
-        self.right2.set(ctre.ControlMode.PercentOutput, limit(-right))
-        self.right3.set(ctre.ControlMode.PercentOutput, limit(-right))
+        self.setSpeed(left_output * factor, right_output * factor)
 
     #limit percent output from -1.0 to 1.0
-    def limit(speed):
+    def limit(self, speed):
         if(speed > 1.0):
             return 1.0
         elif(speed < -1.0):
             return -1.0
         return speed
 
-    def toggleGearing():
+    def toggleGearing(self):
         setGearing(not getGearing())
 
-    def setHighGearing():
+    def setHighGearing(self):
         if getGearing() == False:
             setGearing(True)
 
-    def setLowGearing():
+    def setLowGearing(self):
         if getGearing() == True:
             setGearing(False)
 
-    def getGearing():
+    def getGearing(self):
 
         return self.solenoid.get()
     #set both gearbox gearings at the same time
-    def setGearing(input):
+    def setGearing(self, input):
         self.solenoid.set(input)
 
     def initDefaultCommand(self):

@@ -1,11 +1,13 @@
 import wpilib
 import commandbased
 import ctre
-import oi
 from wpilib.command import Command
+import wpilib.buttons
 import subsystems
 import networktables
 import robot_map
+import commands.drivetrain
+import commands.other
 
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
@@ -16,7 +18,7 @@ class Melody(commandbased.CommandBasedRobot):
         self.drivetrain = subsystems.Drivetrain()
         #self.ramp = subsystems.Ramp()
 
-        oi.initOI()
+        self.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
         self.compressor = wpilib.Compressor()
 
@@ -25,14 +27,16 @@ class Melody(commandbased.CommandBasedRobot):
     def autonomousInit(self):
         pass
 
-    def autonomousPeriodic(self):
-        pass
-
     def teleopInit(self):
         pass
 
-    def teleopPeriodic(self):
-        print(self.drivetrain.getCurrentCommand())
+    def initOI(self):
+        self.controller = wpilib.Joystick(0)
+        self.button_board = wpilib.Joystick(1)
+
+        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
+        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["share"]).whenPressed(commands.other.ToggleCompressor())
+
 
 
 if __name__ == '__main__':

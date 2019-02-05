@@ -11,7 +11,7 @@ class ToggleCompressor(InstantCommand):
         pass
 
     def execute(self):
-        if robot.compressor.enabled():
-            stop()
+        if self.getRobot().compressor.enabled():
+            self.getRobot().compressor.stop()
         else:
-            start()
+            self.getRobot().compressor.start()

@@ -20,7 +20,7 @@ can_ids = {
     "arm": 7,
 
     "ramp": 8,
-    "pcm": 9
+    "pcm": 3
 }
 
 pcm = {
