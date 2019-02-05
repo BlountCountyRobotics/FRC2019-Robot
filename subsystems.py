@@ -37,15 +37,15 @@ class Drivetrain(Subsystem):
         #cube joystick input for better curve
         left_output  = math.pow(joystick.getRawAxis(robot_map.ds4["l-y_axis"]), 3)
         right_output = math.pow(joystick.getRawAxis(robot_map.ds4["r-y_axis"]), 3)
-
+        print("left:",left_output,"\tright:",right_output)
         if useFactor:
             #create factor for easier driving at slow speeds
             factor = .4
 
             #if bumpers are pressed, increase factor
-            if   joystick.getBumper(XboxController.Hand.kLeft):
+            if   joystick.getRawButtonPressed(robot_map.ds4["l1"]):
                 factor += .3
-            elif joystick.getBumper(XboxController.Hand.kRight):
+            elif joystick.getRawButtonPressed(robot_map.ds4["r1"]):
                 factor += .3
 
             setSpeed(left_output * factor, right_output * factor)
@@ -58,9 +58,9 @@ class Drivetrain(Subsystem):
         self.left2.set(ctre.ControlMode.PercentOutput, limit(left))
         self.left3.set(ctre.ControlMode.PercentOutput, limit(left))
 
-        self.right1.set(ctre.ControlMode.PercentOutput, limit(right))
-        self.right2.set(ctre.ControlMode.PercentOutput, limit(right))
-        self.right3.set(ctre.ControlMode.PercentOutput, limit(right))
+        self.right1.set(ctre.ControlMode.PercentOutput, limit(-right))
+        self.right2.set(ctre.ControlMode.PercentOutput, limit(-right))
+        self.right3.set(ctre.ControlMode.PercentOutput, limit(-right))
 
     #limit percent output from -1.0 to 1.0
     def limit(speed):

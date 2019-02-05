@@ -4,7 +4,6 @@ import ctre
 import oi
 from wpilib.command import Command
 import subsystems
-import navx
 import networktables
 import robot_map
 
@@ -12,10 +11,10 @@ class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         Command.getRobot = lambda x=0: self
 
-        self.arm = subsystems.Arm()
-        self.grabber = subsystems.Grabber()
+        #self.arm = subsystems.Arm()
+        #self.grabber = subsystems.Grabber()
         self.drivetrain = subsystems.Drivetrain()
-        self.ramp = subsystems.Ramp()
+        #self.ramp = subsystems.Ramp()
 
         oi.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
@@ -33,7 +32,7 @@ class Melody(commandbased.CommandBasedRobot):
         pass
 
     def teleopPeriodic(self):
-        pass
+        print(self.drivetrain.getCurrentCommand())
 
 
 if __name__ == '__main__':

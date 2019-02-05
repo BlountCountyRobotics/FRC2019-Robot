@@ -8,10 +8,10 @@ can_ids = {
     #left side drivetrain motors
     "left1": 0,
     "left2": 1,
-    "left3": 2,
+    "left3": 3,
 
     #right side drivetrain motors
-    "right1": 3,
+    "right1": 2,
     "right2": 4,
     "right3": 5,
 

@@ -15,9 +15,9 @@ class FollowJoystick(Command):
 
     def execute(self):
         self.getRobot().drivetrain.followJoystick(oi.controller)
-
+        print("x")
         #if touchpad button is pressed, invert gearing
-        if oi.controller.getRawButtonPressed(robot_map.ds4["touchpad_button"]):
+        if oi.controller.getRawButtonPressed(robot_map.ds4["l_click"]):
             self.getRobot().drivetrain.setGearing(not self.getRobot().drivetrain.getGearing())
 
 
