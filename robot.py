@@ -8,13 +8,14 @@ import networktables
 import robot_map
 import commands.drivetrain
 import commands.other
+import commands.end_effector
 
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         Command.getRobot = lambda x=0: self
 
         #self.arm = subsystems.Arm()
-        #self.grabber = subsystems.Grabber()
+        self.end_effector = subsystems.EndEffector()
         self.drivetrain = subsystems.Drivetrain()
         #self.ramp = subsystems.Ramp()
 
@@ -36,7 +37,7 @@ class Melody(commandbased.CommandBasedRobot):
 
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["share"]).whenPressed(commands.other.ToggleCompressor())
-
+        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["cross"]).whenPressed(commands.end_effector.Toggle())
 
 
 if __name__ == '__main__':

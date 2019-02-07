@@ -6,13 +6,13 @@
 
 can_ids = {
     #left side drivetrain motors
-    "left1": 0,
-    "left2": 1,
+    "left1": 4,
+    "left2": 2,
     "left3": 3,
 
     #right side drivetrain motors
-    "right1": 2,
-    "right2": 4,
+    "right1": 0,
+    "right2": 1,
     "right3": 5,
 
     #arm motors
@@ -25,6 +25,7 @@ can_ids = {
 
 pcm = {
     "gearbox": 0,
+    "end_effector": 1,
     "compressor": 3
 }
 

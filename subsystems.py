@@ -4,6 +4,7 @@ import ctre
 import robot_map
 import math
 import commands.drivetrain
+import commands.end_effector
 
 
 class Arm(Subsystem):
@@ -79,7 +80,6 @@ class Drivetrain(Subsystem):
             setGearing(False)
 
     def getGearing(self):
-
         return self.solenoid.get()
     #set both gearbox gearings at the same time
     def setGearing(self, input):
@@ -91,16 +91,20 @@ class Drivetrain(Subsystem):
 
 
 
-class Grabber(Subsystem):
+class EndEffector(Subsystem):
 
     def __init__(self):
-        super().__init__("Grabber")
-        self.grabber_motor = ctre.TalonSRX(robot_map.can_ids["grabber"])
+        super().__init__("EndEffector")
+        self.end_effector = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["end_effector"])
 
+    def set(input):
+        self.end_effector.set(input)
 
+    def get():
+        return self.end_effector.get()
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(None) #needs default command
+        self.setDefaultCommand(commands.end_effector.Nothing()) #needs default command
 
 
 
