@@ -97,14 +97,14 @@ class EndEffector(Subsystem):
         super().__init__("EndEffector")
         self.end_effector = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["end_effector"])
 
-    def set(input):
+    def set(self, input):
         self.end_effector.set(input)
 
-    def get():
+    def get(self):
         return self.end_effector.get()
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(commands.end_effector.Nothing()) #needs default command
+        self.setDefaultCommand(commands.end_effector.Nothing()) 
 
 
 

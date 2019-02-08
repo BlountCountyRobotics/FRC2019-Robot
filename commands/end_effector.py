@@ -6,7 +6,7 @@ class Nothing(Command):
 
     def __init__(self):
         super().__init__("Nothing")
-        self.requires(self.getRobot().EndEffector)
+        self.requires(self.getRobot().end_effector)
 
     def initialize(self):
         pass
@@ -19,10 +19,10 @@ class Toggle(InstantCommand):
 
     def __init__(self):
         super().__init__("Toggle")
-        self.requires(self.getRobot().EndEffector)
+        self.requires(self.getRobot().end_effector)
 
     def initialize(self):
         pass
 
     def execute(self):
-        self.getRobot().end_effector.set(not self.getRobot.end_effector.get())
+        self.getRobot().end_effector.set(not self.getRobot().end_effector.get())
