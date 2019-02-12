@@ -2,17 +2,6 @@ import wpilib
 from wpilib.command import Command
 from wpilib.command import InstantCommand
 
-class Nothing(Command):
-
-    def __init__(self):
-        super().__init__("Nothing")
-        self.requires(self.getRobot().end_effector)
-
-    def initialize(self):
-        pass
-
-    def execute(self):
-        pass
 
 
 class Toggle(InstantCommand):

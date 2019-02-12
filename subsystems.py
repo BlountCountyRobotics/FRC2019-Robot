@@ -4,7 +4,7 @@ import ctre
 import robot_map
 import math
 import commands.drivetrain
-import commands.end_effector
+import commands.nothing
 
 
 class Arm(Subsystem):
@@ -104,7 +104,7 @@ class EndEffector(Subsystem):
         return self.end_effector.get()
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(commands.end_effector.Nothing()) 
+        self.setDefaultCommand(commands.nothing.Nothing(self))
 
 
 
