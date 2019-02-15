@@ -9,15 +9,16 @@ import robot_map
 import commands.drivetrain
 import commands.other
 import commands.end_effector
+import commands.ramp
 
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         Command.getRobot = lambda x=0: self
 
-        #self.arm = subsystems.Arm()
+        self.arm = subsystems.Arm()
         self.end_effector = subsystems.EndEffector()
         self.drivetrain = subsystems.Drivetrain()
-        #self.ramp = subsystems.Ramp()
+        self.ramp = subsystems.Ramp()
 
         self.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
@@ -38,6 +39,7 @@ class Melody(commandbased.CommandBasedRobot):
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["share"]).whenPressed(commands.other.ToggleCompressor())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["cross"]).whenPressed(commands.end_effector.Toggle())
+        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["square"]).whenPressed(commands.ramp.Toggle())
 
 
 if __name__ == '__main__':

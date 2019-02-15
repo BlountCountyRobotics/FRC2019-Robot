@@ -114,8 +114,13 @@ class Ramp(Subsystem):
 
     def __init__(self):
         super().__init__("Ramp")
-        self.ramp_motor = ctre.TalonSRX(robot_map.can_ids["ramp"])
+        self.solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["ramp"])
 
+    def get(self):
+        return self.solenoid.get()
+
+    def set(self, input):
+        self.solenoid.set(input)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(None) #needs default command
+        self.setDefaultCommand(commands.nothing.Nothing(self)) #needs default command

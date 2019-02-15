@@ -26,7 +26,8 @@ can_ids = {
 pcm = {
     "gearbox": 0,
     "end_effector": 1,
-    "compressor": 3
+    "compressor": 3,
+    "ramp": 2
 }
 
 ds4 = {
@@ -49,4 +50,9 @@ ds4 = {
     "l2_axis": 3,
     "r2_axis": 4,
     "touchpad_button": 14
+}
+
+blinkin = {
+    "color1heartbeat": 0.07,
+    "color2heartbeat": 0.27
 }
