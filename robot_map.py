@@ -17,7 +17,6 @@ can_ids = {
 
     #arm motors
     "grabber": 6,
-    "arm": 7,
 
     "ramp": 8,
     "pcm": 0
@@ -26,7 +25,8 @@ can_ids = {
 pcm = {
     "gearbox": 0,
     "end_effector": 2,
-    "ramp": 3
+    "ramp": 3,
+    "arm": 1 #probably not one, change this later
 }
 
 ds4 = {

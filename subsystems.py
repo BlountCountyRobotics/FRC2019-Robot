@@ -10,16 +10,16 @@ class Arm(Subsystem):
 
     def __init__(self):
         super().__init__("Arm")
-        self.solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["arm"])
+        self.arm = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["arm"])
 
     def get(self):
-        return self.end_effector.get()
+        return self.arm.get()
 
     def set(self, input):
-        self.end_effector.set(input)
+        self.arm.set(input)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(commands.nothing.Nothing()) #needs default command
+        self.setDefaultCommand(commands.nothing.Nothing(self)) #needs default command
 
 
 class Drivetrain(Subsystem):

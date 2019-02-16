@@ -8,6 +8,7 @@ import networktables
 import robot_map
 import commands.drivetrain
 import commands.other
+import commands.arm
 import commands.end_effector
 import commands.ramp
 
