@@ -1,3 +1,2 @@
 [auth]
-hostname = 4504
-
+hostname = roboRIO-4504-FRC.local
