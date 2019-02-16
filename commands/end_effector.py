@@ -1,5 +1,4 @@
 import wpilib
-from wpilib.command import Command
 from wpilib.command import InstantCommand
 
 

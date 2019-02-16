@@ -6,16 +6,20 @@ import math
 import commands.drivetrain
 import commands.nothing
 
-
 class Arm(Subsystem):
 
     def __init__(self):
         super().__init__("Arm")
-        self.arm_motor = ctre.TalonSRX(robot_map.can_ids["arm"])
+        self.solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["arm"])
+
+    def get(self):
+        return self.end_effector.get()
+
+    def set(self, input):
+        self.end_effector.set(input)
+
     def initDefaultCommand(self):
-        self.setDefaultCommand(None) #needs default command
-
-
+        self.setDefaultCommand(commands.nothing.Nothing()) #needs default command
 
 
 class Drivetrain(Subsystem):
