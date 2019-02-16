@@ -53,7 +53,7 @@ class Drivetrain(Subsystem):
         factor = .4
 
         #if bumpers are pressed, increase factor
-        if   joystick.getRawButton(robot_map.ds4["l1"]):
+        if joystick.getRawButton(robot_map.ds4["l1"]):
             factor += .3
         if joystick.getRawButton(robot_map.ds4["r1"]):
             factor += .3
@@ -97,11 +97,11 @@ class EndEffector(Subsystem):
         super().__init__("EndEffector")
         self.end_effector = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["end_effector"])
 
-    def set(self, input):
-        self.end_effector.set(input)
-
     def get(self):
         return self.end_effector.get()
+
+    def set(self, input):
+        self.end_effector.set(input)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(commands.nothing.Nothing(self))
@@ -124,3 +124,18 @@ class Ramp(Subsystem):
 
     def initDefaultCommand(self):
         self.setDefaultCommand(commands.nothing.Nothing(self)) #needs default command
+
+class Lights(Subsystem):
+
+    def __init__(self):
+        super().__init__("Lights")
+        self.blinkin = wpilib.Spark(0)
+
+    def get(self):
+        return self.blinkin.get()
+
+    def set(self, input):
+        self.blinkin.set(input)
+
+    def initDefaultCommand(self):
+        self.setDefaultCommand(commands.other.StartLeds()) #needs default command

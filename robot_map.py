@@ -6,13 +6,13 @@
 
 can_ids = {
     #left side drivetrain motors
-    "left1": 4,
-    "left2": 2,
-    "left3": 3,
+    "left1": 0,
+    "left2": 1,
+    "left3": 2,
 
     #right side drivetrain motors
-    "right1": 0,
-    "right2": 1,
+    "right1": 3,
+    "right2": 4,
     "right3": 5,
 
     #arm motors
@@ -20,14 +20,13 @@ can_ids = {
     "arm": 7,
 
     "ramp": 8,
-    "pcm": 3
+    "pcm": 0
 }
 
 pcm = {
     "gearbox": 0,
-    "end_effector": 1,
-    "compressor": 3,
-    "ramp": 2
+    "end_effector": 2,
+    "ramp": 3
 }
 
 ds4 = {
@@ -53,6 +52,6 @@ ds4 = {
 }
 
 blinkin = {
-    "color1heartbeat": 0.07,
-    "color2heartbeat": 0.27
+    "bluechase": 0.21,
+    "defaultgradient": 0.41
 }

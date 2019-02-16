@@ -20,6 +20,9 @@ class Melody(commandbased.CommandBasedRobot):
         self.drivetrain = subsystems.Drivetrain()
         self.ramp = subsystems.Ramp()
 
+        self.blinkin = subsystems.Lights()
+        self.isRamp = False
+
         self.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
         self.compressor = wpilib.Compressor()
@@ -36,7 +39,7 @@ class Melody(commandbased.CommandBasedRobot):
         self.controller = wpilib.Joystick(0)
         self.button_board = wpilib.Joystick(1)
 
-        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
+        #wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["share"]).whenPressed(commands.other.ToggleCompressor())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["cross"]).whenPressed(commands.end_effector.Toggle())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["square"]).whenPressed(commands.ramp.Toggle())
