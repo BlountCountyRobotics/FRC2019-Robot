@@ -1,7 +1,5 @@
-from wpilib.command import InstantCommand
-from wpilib.command import Command
-import robot
-import robot_map
+from wpilib.command import InstantCommand, Command
+import robot, robot_map
 
 class ToggleCompressor(InstantCommand):
 

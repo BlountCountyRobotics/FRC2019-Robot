@@ -1,20 +1,5 @@
-import wpilib
-import commandbased
-import ctre
-from wpilib.command import Command
-from wpilib.command import Subsystem
-from wpilib.command import Scheduler
-import wpilib.buttons
-import subsystems
-import networktables
-import robot_map
-import commands.drivetrain
-import commands.other
-import commands.arm
-import commands.end_effector
-import commands.ramp
-import commands.lights
-
+from wpilib.command import Subsystem, Scheduler, Command
+import wpilib, commandbased, ctre, wpilib.buttons, subsystems, networktables, robot_map, commands.ramp, commands.lights, commands.end_effector, commands.arm, commands.other, commands.drivetrain
 
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):

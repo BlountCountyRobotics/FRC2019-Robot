@@ -1,8 +1,5 @@
-import wpilib
-from wpilib.command import Command
-from wpilib.command import InstantCommand
-from wpilib.command import Scheduler
-import commands.lights
+from wpilib.command import InstantCommand, Scheduler, Command
+import commands.lights, wpilib
 
 class Toggle(InstantCommand):
 

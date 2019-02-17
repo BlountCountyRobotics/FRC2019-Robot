@@ -1,7 +1,5 @@
-from wpilib.command import TimedCommand
-from wpilib.command import Command
-import robot
-import robot_map
+from wpilib.command import TimedCommand, Command
+import robot, robot_map
 
 class SetColor(Command):
     def __init__(self, color):

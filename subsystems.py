@@ -1,12 +1,5 @@
-import wpilib
-import wpilib.interfaces
 from wpilib.command.subsystem import Subsystem
-import ctre
-import robot_map
-import math
-import commands.lights
-import commands.drivetrain
-import commands.nothing
+import wpilib.interfaces, wpilib, commands.drivetrain, commands.nothing, commands.lights, ctre, robot_map, math
 
 class Arm(Subsystem):
 

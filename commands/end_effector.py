@@ -1,7 +1,5 @@
-import wpilib
-from wpilib.command import InstantCommand
-from wpilib.command import Scheduler
-import commands.lights
+from wpilib.command import InstantCommand, Scheduler
+import commands.lights, wpilib
 
 
 

@@ -1,8 +1,5 @@
 from wpilib.command import Command, Scheduler
-import commands.lights
-import subsystems
-import robot
-import robot_map
+import robot, robot_map, subsystems, commands.lights
 
 
 class FollowJoystick(Command):
