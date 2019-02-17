@@ -25,7 +25,7 @@ class Melody(commandbased.CommandBasedRobot):
         self.drivetrain = subsystems.Drivetrain()
         self.ramp = subsystems.Ramp()
 
-        #self.blinkin = subsystems.Lights()
+        self.blinkin = subsystems.Lights()
         self.isRamp = False
 
         self.initOI()
