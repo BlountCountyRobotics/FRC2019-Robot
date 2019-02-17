@@ -169,9 +169,7 @@ class Lights(Subsystem):
 
     def __init__(self):
         super().__init__("Lights")
-        self.blinkin1 = wpilib.Spark(0)
-        self.blinkin2 = wpilib.Spark(1)
-        self.blinkin = wpilib.SpeedControllerGroup(self.blinkin1, self.blinkin2)
+        self.blinkin = wpilib.Spark(0)
 
     def get(self):
         return self.blinkin.get()
