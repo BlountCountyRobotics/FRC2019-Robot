@@ -1,7 +1,7 @@
 import wpilib
 from wpilib.command import Command
 from wpilib.command import InstantCommand
-import commands.color
+import commands.lights
 
 class Toggle(InstantCommand):
 
@@ -14,4 +14,4 @@ class Toggle(InstantCommand):
 
     def execute(self):
         self.getRobot().ramp.set(not self.getRobot().ramp.get())
-        self.getRobot().blinkin.setCurrentCommand(commands.color.SetColor("bluechase"))
+        self.getRobot().blinkin.setCurrentCommand(commands.lights.SetColor("bluechase"))

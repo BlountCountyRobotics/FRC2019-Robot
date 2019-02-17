@@ -4,7 +4,7 @@ from wpilib.command.subsystem import Subsystem
 import ctre
 import robot_map
 import math
-import commands.color
+import commands.lights
 import commands.drivetrain
 import commands.nothing
 
@@ -180,4 +180,4 @@ class Lights(Subsystem):
         self.blinkin.set(input)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(commands.color.SetColor("defaultgradient")) #needs default command
+        self.setDefaultCommand(commands.lights.SetColor("defaultgradient")) #needs default command
