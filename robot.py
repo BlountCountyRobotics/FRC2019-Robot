@@ -3,6 +3,7 @@ import commandbased
 import ctre
 from wpilib.command import Command
 from wpilib.command import Subsystem
+from wpilib.command import Scheduler
 import wpilib.buttons
 import subsystems
 import networktables
@@ -12,6 +13,7 @@ import commands.other
 import commands.arm
 import commands.end_effector
 import commands.ramp
+import commands.lights
 
 
 class Melody(commandbased.CommandBasedRobot):
@@ -35,13 +37,14 @@ class Melody(commandbased.CommandBasedRobot):
         networktables.NetworkTables.initialize()
         self.smart_dashboard = networktables.NetworkTables.getTable("SmartDashboard")
 
-
-
     def autonomousInit(self):
-        pass
+        Scheduler.getInstance().add(commands.lights.SetColor("forest"))
 
     def teleopInit(self):
-        pass
+        Scheduler.getInstance().add(commands.lights.SetColor("defaultgradient"))
+
+    def disabledInit(self):
+        Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
 
     def initOI(self):
         self.controller = wpilib.Joystick(0)

@@ -63,5 +63,10 @@ pid = {
 blinkin = {
     "bluechase": 0.21,
     "defaultgradient": 0.41,
-    "forest": -0.91
+    "forest": -0.91,
+    "strobered": -.11,
+    "bpm": .43,
+    "green": .77,
+    "hotpink": .57,
+    "rorange": .63
 }

@@ -1,5 +1,7 @@
 import wpilib
 from wpilib.command import InstantCommand
+from wpilib.command import Scheduler
+import commands.lights
 
 
 
@@ -14,3 +16,4 @@ class Toggle(InstantCommand): #should only be used to drop the arm; we could add
 
     def execute(self):
         self.getRobot().arm.set(not self.getRobot().arm.get())
+        Scheduler.getInstance().add(commands.lights.FlashColor("rorange", .2))
