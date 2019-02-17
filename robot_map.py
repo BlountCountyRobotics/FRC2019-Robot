@@ -1,9 +1,4 @@
-
-
 #this file contains the constant values (ids, etc) associated with the robot
-
-
-
 can_ids = {
     #left side drivetrain motors
     "left1": 0,
@@ -49,6 +44,20 @@ ds4 = {
     "l2_axis": 3,
     "r2_axis": 4,
     "touchpad_button": 14
+}
+
+k = {
+    "p": .1,
+    "i": .1,
+    "d": .1,
+    "f": .1
+}
+
+pid = {
+    "speed": .5,
+    "setpoint": 25,
+    "input_range": [0, 51],
+    "output_range": .3
 }
 
 blinkin = {

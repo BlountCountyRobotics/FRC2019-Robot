@@ -1,4 +1,5 @@
 import wpilib
+import wpilib.interfaces
 from wpilib.command.subsystem import Subsystem
 import ctre
 import robot_map
@@ -22,7 +23,9 @@ class Arm(Subsystem):
         self.setDefaultCommand(commands.nothing.Nothing(self)) #needs default command
 
 
-class Drivetrain(Subsystem):
+
+
+class Drivetrain(Subsystem, wpilib.interfaces.PIDSource, wpilib.interfaces.PIDOutput):
 
     def __init__(self):
         super().__init__("Drivetrain")
@@ -36,6 +39,14 @@ class Drivetrain(Subsystem):
 
         self.solenoid = wpilib.Solenoid(robot_map.can_ids["pcm"], robot_map.pcm["gearbox"])
 
+        self.pid_command_names = ["FollowTape"]
+
+        self.pid_controller = wpilib.PIDController(robot_map.k["p"], robot_map.k["i"], robot_map.k["d"], robot_map.k["f"], source=self, output=self)
+        self.pid_controller.onTarget = self.onTarget
+        self.pid_controller.disable()
+
+
+
     def setSpeed(self, left, right):
         self.left1.set(ctre.ControlMode.PercentOutput, self.limit(left))
         self.left2.set(ctre.ControlMode.PercentOutput, self.limit(left))
@@ -44,8 +55,6 @@ class Drivetrain(Subsystem):
         self.right1.set(ctre.ControlMode.PercentOutput, self.limit(-right))
         self.right2.set(ctre.ControlMode.PercentOutput, self.limit(-right))
         self.right3.set(ctre.ControlMode.PercentOutput, self.limit(-right))
-
-
 
     #use xbox controller to feed motor output
     def followJoystick(self, joystick):
@@ -85,12 +94,38 @@ class Drivetrain(Subsystem):
 
     def getGearing(self):
         return self.solenoid.get()
+
     #set both gearbox gearings at the same time
     def setGearing(self, input):
         self.solenoid.set(input)
 
+    def start_pid(self):
+        self.pid_controller.enable()
+
+    def stop_pid(self):
+        self.pid_controller.disable()
+
     def initDefaultCommand(self):
         self.setDefaultCommand(commands.drivetrain.FollowJoystick()) #needs default command
+
+    #PIDSource overrides:
+    def getPIDSourceType(self):
+        return PIDSourceType.kRate
+
+    def pidGet(self):
+        return getRobot().smart_dashboard.getNumber("visionError", 0)
+
+    #PIDOutput override:
+    def pidWrite(self, output):
+        #if current command is controlling the DT via pid
+        if self.getCurrentCommandName() in self.pid_command_names:
+            self.setSpeed(robot_map.k["speed"] - output, robot_map.k["speed"] + output)
+
+    #PIDBase ovveride:
+    def onTarget(self):
+        return False
+
+
 
 
 

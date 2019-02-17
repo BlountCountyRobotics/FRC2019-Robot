@@ -2,6 +2,7 @@ import wpilib
 import commandbased
 import ctre
 from wpilib.command import Command
+from wpilib.command import Subsystem
 import wpilib.buttons
 import subsystems
 import networktables
@@ -12,9 +13,12 @@ import commands.arm
 import commands.end_effector
 import commands.ramp
 
+
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         Command.getRobot = lambda x=0: self
+        Subsystem.getRobot = lambda x=0: self
+
 
         self.arm = subsystems.Arm()
         self.end_effector = subsystems.EndEffector()
@@ -27,6 +31,9 @@ class Melody(commandbased.CommandBasedRobot):
         self.initOI()
         #self.navx = navx.ahrs.AHRS.create_spi()
         self.compressor = wpilib.Compressor()
+
+        networktables.NetworkTables.initialize()
+        self.smart_dashboard = networktables.NetworkTables.getTable("SmartDashboard")
 
 
 
