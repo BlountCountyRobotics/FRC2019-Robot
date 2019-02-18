@@ -60,10 +60,10 @@ k = {
 
 #constants for the tape following pid system
 pid = {
-    "speed": .5,
+    "speed": .2,
     "setpoint": 25,
     "input_range": [0, 51],
-    "output_range": .3
+    "output_range": .2
 }
 
 #map of color patterns for the blinkin
