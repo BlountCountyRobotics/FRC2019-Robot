@@ -30,7 +30,6 @@ class Melody(commandbased.CommandBasedRobot):
         Scheduler.getInstance().add(commands.lights.SetColor("forest"))
         self.blinkin.setDefaultCommand(commands.lights.SetColor("forest"))
 
-
     def teleopInit(self):
         Scheduler.getInstance().add(commands.lights.SetColor("defaultgradient"))
         self.blinkin.setDefaultCommand(commands.lights.SetColor("defaultgradient"))
