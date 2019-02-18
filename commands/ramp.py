@@ -1,7 +1,6 @@
 from wpilib.command import InstantCommand, Scheduler, Command
 import commands.lights, wpilib
 
-
 #toggle the ramp state
 class Toggle(InstantCommand):
     def __init__(self):

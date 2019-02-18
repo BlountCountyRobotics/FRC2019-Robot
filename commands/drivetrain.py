@@ -20,7 +20,6 @@ class FollowJoystick(Command):
             #flash hotpink for .2 seconds when the gearing switches
             Scheduler.getInstance().add(commands.lights.FlashColor("hotpink", .2))
 
-
 #stop driving but keep feeding the motor 0.0 output
 class StopDriving(Command):
     def __init__(self):

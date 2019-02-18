@@ -17,8 +17,6 @@ class Arm(Subsystem):
     def initDefaultCommand(self):
         pass
 
-
-
 class Drivetrain(Subsystem, wpilib.interfaces.PIDSource, wpilib.interfaces.PIDOutput):
     def __init__(self):
         #run subsystem constructor
@@ -128,11 +126,6 @@ class Drivetrain(Subsystem, wpilib.interfaces.PIDSource, wpilib.interfaces.PIDOu
     def onTarget(self):
         return False
 
-
-
-
-
-
 class EndEffector(Subsystem):
     def __init__(self):
         super().__init__("EndEffector")
@@ -148,10 +141,6 @@ class EndEffector(Subsystem):
 
     def initDefaultCommand(self):
         pass
-
-
-
-
 
 class Ramp(Subsystem):
     def __init__(self):

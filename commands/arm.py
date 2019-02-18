@@ -1,7 +1,6 @@
 from wpilib.command import InstantCommand, Scheduler
 import commands.lights, wpilib
 
-
 #toggles and drops the arm
 class Toggle(InstantCommand):
     def __init__(self):
