@@ -1,8 +1,8 @@
 from wpilib.command import InstantCommand, Command
 import robot, robot_map
 
+#toggle the compressor state
 class ToggleCompressor(InstantCommand):
-
     def __init__(self):
         super().__init__("ToggleCompressor")
 

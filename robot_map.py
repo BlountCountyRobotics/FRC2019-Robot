@@ -1,4 +1,6 @@
 #this file contains the constant values (ids, etc) associated with the robot
+
+#map of can ids
 can_ids = {
     #left side drivetrain motors
     "left1": 0,
@@ -17,13 +19,15 @@ can_ids = {
     "pcm": 0
 }
 
+#map of pcm connectors
 pcm = {
     "gearbox": 0,
     "end_effector": 2,
     "ramp": 3,
-    "arm": 1 #probably not one, change this later
+    "arm": 1
 }
 
+#map of ds4 buttons and axes
 ds4 = {
     "square": 1,
     "cross": 2,
@@ -46,6 +50,7 @@ ds4 = {
     "touchpad_button": 14
 }
 
+#k values for tape following pid system
 k = {
     "p": .1,
     "i": .1,
@@ -53,6 +58,7 @@ k = {
     "f": .1
 }
 
+#constants for the tape following pid system
 pid = {
     "speed": .5,
     "setpoint": 25,
@@ -60,6 +66,7 @@ pid = {
     "output_range": .3
 }
 
+#map of color patterns for the blinkin
 blinkin = {
     "bluechase": 0.21,
     "defaultgradient": 0.41,

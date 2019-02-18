@@ -2,9 +2,8 @@ from wpilib.command import InstantCommand, Scheduler
 import commands.lights, wpilib
 
 
-
-class Toggle(InstantCommand): #should only be used to drop the arm; we could add a timeout for this if we wanted to prevent re-actuating this solenoid
-
+#toggles and drops the arm
+class Toggle(InstantCommand):
     def __init__(self):
         super().__init__("Toggle")
         self.requires(self.getRobot().arm)

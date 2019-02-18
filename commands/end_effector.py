@@ -2,9 +2,8 @@ from wpilib.command import InstantCommand, Scheduler
 import commands.lights, wpilib
 
 
-
+#toggle the end_effector state
 class Toggle(InstantCommand):
-
     def __init__(self):
         super().__init__("Toggle")
         self.requires(self.getRobot().end_effector)
