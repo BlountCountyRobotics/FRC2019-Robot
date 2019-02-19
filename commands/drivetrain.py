@@ -14,7 +14,7 @@ class FollowJoystick(Command):
         self.getRobot().drivetrain.followJoystick(self.getRobot().controller)
 
         #if touchpad button is pressed, invert gearing
-        if self.getRobot().controller.getRawButtonPressed(robot_map.ds4["l_click"]):
+        if self.getRobot().controller.getRawButtonPressed(robot_map.ds4["l1"]):
             self.getRobot().drivetrain.setGearing(not self.getRobot().drivetrain.getGearing())
 
             #flash hotpink for .2 seconds when the gearing switches

@@ -61,10 +61,10 @@ class Drivetrain(Subsystem, wpilib.interfaces.PIDSource, wpilib.interfaces.PIDOu
         factor = .4
 
         #if bumpers are pressed, increase factor
-        if joystick.getRawButton(robot_map.ds4["l1"]):
-            factor += .3
-        if joystick.getRawButton(robot_map.ds4["r1"]):
-            factor += .3
+        if joystick.getRawButton(robot_map.ds4["l2_button"]):
+            factor += .2
+        if joystick.getRawButton(robot_map.ds4["r2_button"]):
+            factor += .2
 
         self.setSpeed(left_output * factor, right_output * factor)
 
