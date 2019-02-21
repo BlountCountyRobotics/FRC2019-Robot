@@ -24,5 +24,5 @@ class Deploy(CommandGroup):
         super().__init__("Toggle")
 
         self.addSequential(Toggle())
-        self.addSequential(WaitCommand(timeout=0.5))
+        self.addSequential(WaitCommand(timeout=2))
         self.addSequential(Toggle())
