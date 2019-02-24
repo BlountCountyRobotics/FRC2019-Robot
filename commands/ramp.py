@@ -18,6 +18,7 @@ class Toggle(InstantCommand):
 
         #change the color of the blinkins to a "chase" pattern
         Scheduler.getInstance().add(commands.lights.SetColor("bluechase"))
+        self.getRobot().blinkin.setDefaultCommand(commands.lights.SetColor("bluechase"))
 
 class Deploy(CommandGroup):
     def __init__(self):
