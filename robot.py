@@ -9,22 +9,13 @@ class Melody(commandbased.CommandBasedRobot):
         Subsystem.getRobot = lambda x=0: self
 
         #initialize subsystems
-        self.arm = subsystems.Arm()
-        self.end_effector = subsystems.EndEffector()
-        self.drivetrain = subsystems.Drivetrain()
-        self.ramp = subsystems.Ramp()
-        self.blinkin = subsystems.Lights()
-
-        #create non-subsystem objects
-        self.compressor = wpilib.Compressor()
+        self.initSubsystems()
 
         #initialize joysticks and buttons
         self.initOI()
 
         #initialize networktables connection
-        #allows for smartdashboard and offboard vision communication
-        networktables.NetworkTables.initialize()
-        self.smart_dashboard = networktables.NetworkTables.getTable("SmartDashboard")
+        self.initNetworkTables()
 
     def autonomousInit(self):
         Scheduler.getInstance().add(commands.lights.SetColor("forest"))
@@ -37,6 +28,20 @@ class Melody(commandbased.CommandBasedRobot):
     def disabledInit(self):
         #Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
         pass
+
+    def initSubsystems(self):
+        #initialize subsystems; run at robot startup
+        self.arm = subsystems.Arm()
+        self.end_effector = subsystems.EndEffector()
+        self.drivetrain = subsystems.Drivetrain()
+        self.ramp = subsystems.Ramp()
+        self.blinkin = subsystems.Lights()
+        self.compressor = wpilib.Compressor()
+
+    def initNetworkTables(self):
+        #allows for smartdashboard and offboard vision communication
+        networktables.NetworkTables.initialize()
+        self.smart_dashboard = networktables.NetworkTables.getTable("SmartDashboard")
 
     def initOI(self):
         #initialize joysticks
