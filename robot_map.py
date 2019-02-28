@@ -64,7 +64,7 @@ pid = {
 
 #map of color patterns for the blinkin
 blinkin = {
-    "bluechase": 0.21,
+    "bluechase": 0.01,
     "defaultgradient": 0.41,
     "forest": -0.91,
     "strobered": -.11,
