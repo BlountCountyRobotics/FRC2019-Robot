@@ -18,20 +18,31 @@ class Melody(commandbased.CommandBasedRobot):
         self.initNetworkTables()
 
     def autonomousInit(self):
+        #Set exploratory color during autonomous
         Scheduler.getInstance().add(commands.lights.SetColor("forest"))
         self.blinkin.setDefaultCommand(commands.lights.SetColor("forest"))
 
+    def autonomousPeriodic(self):
+        #put SD values during the match
+        super().autonomousPeriodic()
+        self.smart_dashboard.putString("Gearing:", "High" if self.drivetrain.getGearing() else "Low")
+        self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.get() else "Disabled")
+        self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
+
     def teleopInit(self):
+        #Set default gradient during teleop
         Scheduler.getInstance().add(commands.lights.SetColor("defaultgradient"))
         self.blinkin.setDefaultCommand(commands.lights.SetColor("defaultgradient"))
 
     def teleopPeriodic(self):
+        #put SD values during the match
         super().teleopPeriodic()
         self.smart_dashboard.putString("Gearing:", "High" if self.drivetrain.getGearing() else "Low")
         self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.get() else "Disabled")
         self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
 
     def disabledInit(self):
+        #set red strobing lights if robot disables
         Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
         self.blinkin.setDefaultCommand(commands.lights.SetColor("strobered"))
 
@@ -60,7 +71,6 @@ class Melody(commandbased.CommandBasedRobot):
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["r1"]).whenPressed(commands.end_effector.Toggle())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["square"]).whenPressed(commands.ramp.Deploy())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["triangle"]).whenPressed(commands.arm.Toggle())
-
 
 if __name__ == '__main__':
     wpilib.run(Melody)
