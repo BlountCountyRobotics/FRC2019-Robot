@@ -4,7 +4,7 @@ import wpilib, commandbased, ctre, wpilib.buttons, subsystems, networktables, ro
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         #add getRobot methods to Command and Subsystem
-        #allows commands and subsystems to access this robot
+        #allows commands and subsystems to access the instance
         Command.getRobot = lambda x=0: self
         Subsystem.getRobot = lambda x=0: self
 
