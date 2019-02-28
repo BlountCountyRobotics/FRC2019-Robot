@@ -32,8 +32,8 @@ class Melody(commandbased.CommandBasedRobot):
         self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
 
     def disabledInit(self):
-        #Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
-        pass
+        Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
+        self.blinkin.setDefaultCommand(commands.lights.SetColor("strobered"))
 
     def initSubsystems(self):
         #initialize subsystems; run at robot startup
