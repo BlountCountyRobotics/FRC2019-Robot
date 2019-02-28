@@ -174,3 +174,20 @@ class Lights(Subsystem):
 
     def initDefaultCommand(self):
         self.setDefaultCommand(commands.lights.SetColor("defaultgradient")) #needs default command
+
+class Compressor(Subsystem):
+    def __init__(self):
+        super().__init__("Compressor")
+        self.compressor = wpilib.Compressor()
+
+    def get(self):
+        return self.compressor.enabled()
+
+    def set(self, input):
+        if input:
+            self.compressor.start()
+        else:
+            self.compressor.stop()
+
+    def initDefaultCommand(self):
+        self.setDefaultCommand(commands.compressor.SetCompressor(False))
