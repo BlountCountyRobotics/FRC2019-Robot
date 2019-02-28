@@ -25,6 +25,9 @@ class Melody(commandbased.CommandBasedRobot):
         Scheduler.getInstance().add(commands.lights.SetColor("defaultgradient"))
         self.blinkin.setDefaultCommand(commands.lights.SetColor("defaultgradient"))
 
+    def teleopPeriodic(self):
+        super().teleopPeriodic()
+
     def disabledInit(self):
         #Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
         pass

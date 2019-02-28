@@ -3,7 +3,7 @@
 #map of can ids
 can_ids = {
     #left side drivetrain motors
-    "left1": 0,
+    "left1": 8,
     "left2": 1,
     "left3": 2,
 
@@ -12,7 +12,7 @@ can_ids = {
     "right2": 4,
     "right3": 5,
 
-    "pcm": 7
+    "pcm": 0
 }
 
 #map of pcm connectors
