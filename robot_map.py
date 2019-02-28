@@ -12,11 +12,7 @@ can_ids = {
     "right2": 4,
     "right3": 5,
 
-    #arm motors
-    "grabber": 6,
-
-    "ramp": 8,
-    "pcm": 0
+    "pcm": 7
 }
 
 #map of pcm connectors
