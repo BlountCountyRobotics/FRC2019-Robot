@@ -27,6 +27,9 @@ class Melody(commandbased.CommandBasedRobot):
 
     def teleopPeriodic(self):
         super().teleopPeriodic()
+        self.smart_dashboard.putString("Gearing:", "High" if self.drivetrain.getGearing() else "Low")
+        self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.get() else "Disabled")
+        self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
 
     def disabledInit(self):
         #Scheduler.getInstance().add(commands.lights.SetColor("strobered"))
