@@ -25,7 +25,7 @@ class Melody(commandbased.CommandBasedRobot):
     def autonomousPeriodic(self):
         #put SD values during the match
         super().autonomousPeriodic()
-        self.smart_dashboard.putString("Gearing:", "High" if self.drivetrain.getGearing() else "Low")
+        self.smart_dashboard.putString("Gearing:", "Low" if self.drivetrain.getGearing() else "High")
         self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.enabled() else "Disabled")
         self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
 

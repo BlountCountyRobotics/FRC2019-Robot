@@ -90,7 +90,7 @@ class Drivetrain(Subsystem, wpilib.interfaces.PIDSource, wpilib.interfaces.PIDOu
         if getGearing() == True:
             setGearing(False)
 
-    #get gearing as bool (true=high, false=low)
+    #get gearing as bool (true=low, false=high)
     def getGearing(self):
         return self.solenoid.get()
 
