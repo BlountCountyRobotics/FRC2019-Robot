@@ -1,6 +1,21 @@
 from wpilib.command import Subsystem, Scheduler, Command
 import wpilib, commandbased, ctre, wpilib.buttons, subsystems, networktables, robot_map, commands.ramp, commands.other, commands.lights, commands.end_effector, commands.arm, commands.drivetrain
 
+#____________/\\\______/\\\\\\\\\\\\\\\______/\\\\\\\_______________/\\\____
+# __________/\\\\\_____\/\\\///////////_____/\\\/////\\\___________/\\\\\____
+#  ________/\\\/\\\_____\/\\\_______________/\\\____\//\\\________/\\\/\\\____
+#   ______/\\\/\/\\\_____\/\\\\\\\\\\\\_____\/\\\_____\/\\\______/\\\/\/\\\____
+#    ____/\\\/__\/\\\_____\////////////\\\___\/\\\_____\/\\\____/\\\/__\/\\\____
+#     __/\\\\\\\\\\\\\\\\_____________\//\\\__\/\\\_____\/\\\__/\\\\\\\\\\\\\\\\_
+#      _\///////////\\\//___/\\\________\/\\\__\//\\\____/\\\__\///////////\\\//__
+#       ___________\/\\\____\//\\\\\\\\\\\\\/____\///\\\\\\\/_____________\/\\\____
+#        ___________\///______\/////////////________\///////_______________\///_____
+# Welcome to Team 4504's 2019 Robot code.
+
+# Contributors:
+# porgull/Connor Barker: Lead Programmer
+# shirtlife/Ben Moder: Protege
+
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
         #add getRobot methods to Command and Subsystem
