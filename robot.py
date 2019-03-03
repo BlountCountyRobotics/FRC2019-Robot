@@ -1,5 +1,5 @@
 from wpilib.command import Subsystem, Scheduler, Command
-import wpilib, commandbased, ctre, wpilib.buttons, subsystems, networktables, robot_map, commands.ramp, commands.lights, commands.end_effector, commands.arm, commands.compressor, commands.drivetrain
+import wpilib, commandbased, ctre, wpilib.buttons, subsystems, networktables, robot_map, commands.ramp, commands.other, commands.lights, commands.end_effector, commands.arm, commands.drivetrain
 
 class Melody(commandbased.CommandBasedRobot):
     def robotInit(self):
@@ -26,7 +26,7 @@ class Melody(commandbased.CommandBasedRobot):
         #put SD values during the match
         super().autonomousPeriodic()
         self.smart_dashboard.putString("Gearing:", "High" if self.drivetrain.getGearing() else "Low")
-        self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.get() else "Disabled")
+        self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.enabled() else "Disabled")
         self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
 
     def teleopInit(self):
@@ -38,7 +38,7 @@ class Melody(commandbased.CommandBasedRobot):
         #put SD values during the match
         super().teleopPeriodic()
         self.smart_dashboard.putString("Gearing:", "High" if self.drivetrain.getGearing() else "Low")
-        self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.get() else "Disabled")
+        self.smart_dashboard.putString("Compressor:", "Enabled" if self.compressor.enabled() else "Disabled")
         self.smart_dashboard.putString("End Effector:", "Closed" if self.end_effector.get() else "Grabbing")
 
     def disabledInit(self):
@@ -53,7 +53,7 @@ class Melody(commandbased.CommandBasedRobot):
         self.drivetrain = subsystems.Drivetrain()
         self.ramp = subsystems.Ramp()
         self.blinkin = subsystems.Lights()
-        self.compressor = subsystems.Compressor()
+        self.compressor = wpilib.Compressor()
 
     def initNetworkTables(self):
         #allows for smartdashboard and offboard vision communication
@@ -67,7 +67,7 @@ class Melody(commandbased.CommandBasedRobot):
 
         #initialize buttons and assign commands to those buttons
         #wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["options"]).toggleWhenPressed(commands.drivetrain.StopDriving())
-        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["share"]).whenPressed(commands.compressor.ToggleCompressor())
+        wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["share"]).whenPressed(commands.other.ToggleCompressor())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["r1"]).whenPressed(commands.end_effector.Toggle())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["square"]).whenPressed(commands.ramp.Deploy())
         wpilib.buttons.JoystickButton(self.controller, robot_map.ds4["triangle"]).whenPressed(commands.arm.Toggle())
